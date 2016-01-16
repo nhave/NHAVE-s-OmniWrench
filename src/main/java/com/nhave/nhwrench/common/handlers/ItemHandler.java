@@ -19,6 +19,7 @@ import com.nhave.nhwrench.common.modes.ModeUtil;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemHandler
 {
@@ -101,6 +102,16 @@ public class ItemHandler
 	{
 		GameRegistry.registerItem(item, item.getUnlocalizedName(), Reference.MODID);
 		list.add(new ItemStack(item, 1, 0));
+	}
+	
+	private static void registerOres()
+	{
+		String[] oreDict = new String[] {"lumarBlack", "lumarRed",  "lumarGreen", "lumarBrown", "lumarBlue", "lumarPurple", "lumarCyan", "lumarLightGray", "lumarGray", "lumarPink", "lumarLime", "lumarYellow", "lumarLightBlue", "lumarMagenta", "lumarOrange", "lumarWhite"};
+		
+		for (int i = 0; i < oreDict.length; ++i)
+		{
+			OreDictionary.registerOre(oreDict[i], new ItemStack(itemLumar, 1, i));
+		}
 	}
 	
 	private static void addModes()

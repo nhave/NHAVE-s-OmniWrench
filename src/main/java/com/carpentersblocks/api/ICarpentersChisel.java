@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 
 public interface ICarpentersChisel
 {
-	public abstract void onChiselUse(World world, EntityPlayer player);
+	public void onChiselUse(World world, EntityPlayer player);
 	
-	public abstract boolean canUseChisel(World world, EntityPlayer player);
+	public boolean canUseChisel(World world, EntityPlayer player);
 }

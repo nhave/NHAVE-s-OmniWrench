@@ -12,20 +12,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemLumar extends Item
-{
-	public static String[] oreDict = new String[] {"lumarBlack", "lumarRed",  "lumarGreen", "lumarBrown", "lumarBlue", "lumarPurple", "lumarCyan", "lumarLightGray", "lumarGray", "lumarPink", "lumarLime", "lumarYellow", "lumarLightBlue", "lumarMagenta", "lumarOrange", "lumarWhite"};
-	
-	public ItemLumar()
+{public ItemLumar()
 	{
 		this.setHasSubtypes(true);
 		this.setTextureName("nhwrench:Lumar");
-		for (int i = 0; i < oreDict.length; ++i)
-		{
-			OreDictionary.registerOre(oreDict[i], new ItemStack(this, 1, i));
-		}
 	}
 	
 	@Override

@@ -1,0 +1,53 @@
+//---Creative Tab---//
+itemGroup.nhwrench=NHWRENCH V3
+
+//---Items---//
+item.nhwrench.itemWrench.name=OmniWrench G3
+item.nhwrench.itemComp.Handle.name=Handle Module
+item.nhwrench.itemComp.Piston.name=Piston Module
+item.nhwrench.itemComp.Claw.name=Claw Module
+item.nhwrench.itemLumar.name=Lumar
+item.nhwrench.itemShaderPack.name=Shader Package
+item.nhwrench.itemShader.White.name=Basic White
+item.nhwrench.itemShader.Black.name=Basic Black
+item.nhwrench.itemShader.Dalek.name=EXTERMINATE!
+item.nhwrench.itemShader.Cofh.name=Old School Cofh
+item.nhwrench.itemShader.Nyan.name=Pop Tart Wrench
+item.nhwrench.itemShader.Danish.name=Dannebrog
+item.nhwrench.itemShader.Botany.name=Living Wrench?
+item.nhwrench.itemShader.Taint.name=I Feel The Aura
+item.nhwrench.itemShader.Aeonic.name=Aeonic Support
+item.nhwrench.itemShader.Prototype.name=Prototype G3
+
+//---Tooltip---//
+tooltip.nh.color=Color
+tooltip.wrmode.mode=Mode
+tooltip.wrmode.wrench=Wrenching
+tooltip.wrmode.rotate=Rotation
+tooltip.wrmode.tune=Tuning
+tooltip.wrmode.none=None
+tooltip.wrmode.util=Utility
+tooltip.wrmode.press=Press
+tooltip.wrmode.change=To change Mode
+tooltip.shader.rarity.basic=Common
+tooltip.shader.rarity.rare=Rare
+tooltip.shader.rarity.legendary=Legendary
+tooltip.shader.rarity.exotic=Exotic
+tooltip.shader.current=Current Shader
+tooltip.shader.none=No Shader
+tooltip.shader.appliesto=Can apply to
+tooltip.item.shader=Item Shader
+tooltip.item.omnitool=Omni Tool
+tooltip.item.craft=Crafting Component
+
+//---Config---//
+nh.cfg.title.main=NHWrench Configuration Menu
+nh.cfg.title.client=NHWrench Client Configs
+nh.cfg.title.common=NHWrench Common Configs
+nh.cfg.title.modules=NHWrench Integration Modules
+nh.cfg.entry.client=Client Config
+nh.cfg.entry.client.tooltip=All Client Options
+nh.cfg.entry.common=Common Config
+nh.cfg.entry.common.tooltip=All Common Options
+nh.cfg.entry.modules=Integration Modules
+nh.cfg.entry.modules.tooltip=Enable/Disable Integration Modules

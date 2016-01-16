@@ -1,0 +1,16 @@
+[
+{
+  "modid": "nhwrench",
+  "name": "NHAVE's OmniWrench V3",
+  "description": "The successor of my old 1.6.4 OmniWrench mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["nhave"],
+  "credits": "Anyone who helped with the mod",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

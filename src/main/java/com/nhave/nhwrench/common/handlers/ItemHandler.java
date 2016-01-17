@@ -58,6 +58,7 @@ public class ItemHandler
 	public static void postInit()
 	{
 		setCustomDismantle();
+		registerOres();
 	}
 	
 	public static void registerItems()

@@ -37,6 +37,7 @@ public class ItemHandler
 	public static Item itemShaderTaint;
 	public static Item itemShaderAeonic;
 	public static Item itemShaderPrototype;
+	public static Item itemShaderMillenium;
 
 	public static List<ItemStack> commonShaders = new ArrayList<ItemStack>();
 	public static List<ItemStack> rareShaders = new ArrayList<ItemStack>();
@@ -77,6 +78,7 @@ public class ItemHandler
 		itemShaderTaint = new ItemShader("Taint").setShaderColor(Colors.purple).setBaseName("nhwrench:Shaders/Taint_0").setOverlayName("nhwrench:Blank").setRarity(3).setCreativeTab(NHWrench.creativeTab);
 		itemShaderAeonic = new ItemShader("Aeonic").setShaderColor(Colors.lightBlue).setBaseName("nhwrench:Shaders/Aeonic_0").setOverlayName("nhwrench:Blank").setRarity(2).setCreativeTab(NHWrench.creativeTab);
 		itemShaderPrototype = new ItemShader("Prototype").setShaderColor(Colors.lime).setTextureName("nhwrench:Shaders/Prototype").setRarity(3).setCreativeTab(NHWrench.creativeTab);
+		itemShaderMillenium = new ItemShader("Millenium").setShaderColor(Colors.lightGray).setBaseName("nhwrench:Shaders/Millenium_0").setOverlayName("nhwrench:Blank").setRarity(3).setCreativeTab(NHWrench.creativeTab);
 		
 		registerItem(itemWrench);
 		registerItem(itemLumar);
@@ -92,6 +94,7 @@ public class ItemHandler
 		registerItem(itemShaderTaint);
 		registerShader(itemShaderAeonic, legendaryShaders);
 		registerItem(itemShaderPrototype);
+		registerItem(itemShaderMillenium);
 	}
 	
 	private static void registerItem(Item item)

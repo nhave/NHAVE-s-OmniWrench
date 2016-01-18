@@ -2,11 +2,13 @@ package com.nhave.nhwrench.common.core;
 
 import java.io.File;
 
-import net.minecraft.client.Minecraft;
-
+import com.nhave.nhwrench.common.eventhandlers.ShaderDropHandler;
 import com.nhave.nhwrench.common.handlers.ConfigHandler;
+import com.nhave.nhwrench.common.handlers.CraftingHandler;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy
 {
@@ -18,7 +20,11 @@ public class CommonProxy
 		ConfigHandler.init(configFile);
 	}
 	
-	public void registerEventHandlers() {}
+	public void registerEventHandlers()
+	{
+		MinecraftForge.EVENT_BUS.register(new CraftingHandler());
+		MinecraftForge.EVENT_BUS.register(new ShaderDropHandler());
+	}
     
     public boolean isNHAVE()
     {

@@ -49,23 +49,34 @@ public class ItemShaderPack extends Item
 	{
 		if (!world.isRemote)
 		{
-			if (stack.getItemDamage() == 0 && !ItemHandler.commonShaders.isEmpty())
+			List<ItemStack> shaderList = getListFromMeta(stack.getItemDamage());
+			if (!shaderList.isEmpty())
 			{
-				ItemStack shader = getRandomShader(ItemHandler.commonShaders);
-				if (player.inventory.addItemStackToInventory(shader)) --stack.stackSize;
-			}
-			else if (stack.getItemDamage() == 1 && !ItemHandler.rareShaders.isEmpty())
-			{
-				ItemStack shader = getRandomShader(ItemHandler.rareShaders);
-				if (player.inventory.addItemStackToInventory(shader)) --stack.stackSize;
-			}
-			else if (stack.getItemDamage() == 2 && !ItemHandler.legendaryShaders.isEmpty())
-			{
-				ItemStack shader = getRandomShader(ItemHandler.legendaryShaders);
-				if (player.inventory.addItemStackToInventory(shader)) --stack.stackSize;
+				for (int i = 0; i < 11; ++i)
+				{
+					ItemStack shader = getRandomShader(shaderList);
+					if (i < 10)
+					{
+						Random rand = new Random();
+						if (player.inventory.hasItemStack(shader) && rand.nextFloat() > 0.4F) continue;
+					}
+					if (player.inventory.addItemStackToInventory(shader))
+					{
+						--stack.stackSize;
+						break;
+					}
+				}
 			}
 		}
 		return stack;
+	}
+	
+	public List<ItemStack> getListFromMeta(int meta)
+	{
+		if (meta == 0) return ItemHandler.commonShaders;
+		else if (meta == 1) return ItemHandler.rareShaders;
+		else if (meta == 2) return ItemHandler.legendaryShaders;
+		else return ItemHandler.commonShaders;
 	}
 	
 	public ItemStack getRandomShader(List<ItemStack> list)

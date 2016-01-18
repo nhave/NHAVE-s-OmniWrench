@@ -18,6 +18,7 @@ item.nhwrench.itemShader.Botany.name=Living Wrench?
 item.nhwrench.itemShader.Taint.name=I Feel The Aura
 item.nhwrench.itemShader.Aeonic.name=Aeonic Support
 item.nhwrench.itemShader.Prototype.name=Prototype G3
+item.nhwrench.itemShader.Millenium.name=Millenium 12
 
 //---Tooltip---//
 tooltip.nh.color=Color

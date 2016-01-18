@@ -14,7 +14,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Reference.MODID, version = Reference.VERSION, acceptedMinecraftVersions = Reference.MCVERSIONS, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUIFACTORY)
 public class NHWrench
@@ -53,7 +52,7 @@ public class NHWrench
     {
     	ItemHandler.postInit();
     	CraftingHandler.postInit();
-		MinecraftForge.EVENT_BUS.register(new CraftingHandler());
+    	proxy.registerEventHandlers();
     	IntegrationHandler.postInit();
     }
 }

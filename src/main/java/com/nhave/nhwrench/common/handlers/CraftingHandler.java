@@ -2,7 +2,6 @@ package com.nhave.nhwrench.common.handlers;
 
 import com.nhave.nhlib.helpers.NBTHelper;
 import com.nhave.nhlib.shaders.ShaderManager;
-import com.nhave.nhwrench.common.core.Reference;
 import com.nhave.nhwrench.common.items.ItemLumar;
 import com.nhave.nhwrench.common.items.ItemOmniWrench;
 import com.nhave.nhwrench.common.misc.Colors;
@@ -38,14 +37,14 @@ public class CraftingHandler
 				oreDict[i],
 				Items.redstone));
 		}
+		//Wrench recipe
+		GameRegistry.addRecipe(NBTHelper.setStackInteger(new ItemStack(ItemHandler.itemWrench), "WRENCH", "COLOR", 16777215),
+			new Object[] {" X ", " YX", "Z  ",
+			'X', new ItemStack(ItemHandler.itemComp,1,0),
+			'Y', new ItemStack(ItemHandler.itemComp,1,1),
+			'Z', new ItemStack(ItemHandler.itemComp,1,2)});
 		if (!ConfigHandler.disableRecipes)
 		{
-			//Wrench recipe
-			GameRegistry.addRecipe(NBTHelper.setStackInteger(new ItemStack(ItemHandler.itemWrench), "WRENCH", "COLOR", 16777215),
-				new Object[] {" X ", " YX", "Z  ",
-				'X', new ItemStack(ItemHandler.itemComp,1,0),
-				'Y', new ItemStack(ItemHandler.itemComp,1,1),
-				'Z', new ItemStack(ItemHandler.itemComp,1,2)});
 			//Claw recipe
 			GameRegistry.addRecipe(new ItemStack(ItemHandler.itemComp, 1, 0),
 				new Object[] {" XY", "XZY", "XY ",
@@ -72,25 +71,19 @@ public class CraftingHandler
 			'X', Items.iron_ingot,
 			'Y', "lumarWhite",
 			'Z', Items.ender_pearl}));
-		//Rare ShaderPack
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHandler.itemShaderPack, 1, 1),
-			new Object[] {"XYX", "YZY", "XYX",
-			'X', Items.gold_ingot,
-			'Y', "lumarLightBlue",
-			'Z', Items.ender_pearl}));
-		//Legendary ShaderPack
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHandler.itemShaderPack, 1, 2),
-			new Object[] {"XYX", "YZY", "XYX",
-			'X', Items.diamond,
-			'Y', "lumarPurple",
-			'Z', Items.ender_pearl}));
-		//Prototype G3 Shader recipe
-		if (Reference.MODRELEASE.equals("BETA"))
+		if (ConfigHandler.easyModeShaders)
 		{
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHandler.itemShaderPrototype),
+			//Rare ShaderPack
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHandler.itemShaderPack, 1, 1),
 				new Object[] {"XYX", "YZY", "XYX",
-				'X', Items.iron_ingot,
-				'Y', "lumarLime",
+				'X', Items.gold_ingot,
+				'Y', "lumarLightBlue",
+				'Z', Items.ender_pearl}));
+			//Legendary ShaderPack
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHandler.itemShaderPack, 1, 2),
+				new Object[] {"XYX", "YZY", "XYX",
+				'X', Items.diamond,
+				'Y', "lumarPurple",
 				'Z', Items.ender_pearl}));
 		}
 	}
@@ -103,7 +96,7 @@ public class CraftingHandler
 	}
 	
 	@SubscribeEvent
-	public void handleAnvilEvent(AnvilUpdateEvent evt)
+	public void handleAnvilUpdateEvent(AnvilUpdateEvent evt)
 	{
 		if (evt.left == null || evt.right == null)
 		{
@@ -144,6 +137,18 @@ public class CraftingHandler
 				evt.cost=2;
 				evt.materialCost=1;
 				evt.output=new ItemStack(ItemHandler.itemShaderTaint);
+			}
+			else if (evt.name.equals("TEST:108.A"))
+			{
+				evt.cost=2;
+				evt.materialCost=1;
+				evt.output=new ItemStack(ItemHandler.itemShaderPrototype);
+			}
+			else if (evt.name.equals("LetsKickSomeAstroid"))
+			{
+				evt.cost=2;
+				evt.materialCost=1;
+				evt.output=new ItemStack(ItemHandler.itemShaderMillenium);
 			}
 		}
 	}

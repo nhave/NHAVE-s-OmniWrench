@@ -57,8 +57,11 @@ public class ItemShaderPack extends Item
 					ItemStack shader = getRandomShader(shaderList);
 					if (i < 10)
 					{
+						float chance = 0.6F;
+						if (stack.getItemDamage() == 1) chance = 0.4F;
+						else if (stack.getItemDamage() == 2) chance = 0.2F;
 						Random rand = new Random();
-						if (player.inventory.hasItemStack(shader) && rand.nextFloat() > 0.4F) continue;
+						if (player.inventory.hasItemStack(shader) && rand.nextFloat() > chance) continue;
 					}
 					if (player.inventory.addItemStackToInventory(shader))
 					{

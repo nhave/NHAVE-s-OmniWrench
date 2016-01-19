@@ -2,11 +2,13 @@ package com.nhave.nhwrench.common.core;
 
 import org.apache.logging.log4j.Logger;
 
-import com.nhave.nhwrench.api.WrenchRegistry;
+import com.nhave.nhwrench.api.API;
 import com.nhave.nhwrench.client.creativetabs.CreativeTabWrench;
 import com.nhave.nhwrench.common.handlers.CraftingHandler;
 import com.nhave.nhwrench.common.handlers.IntegrationHandler;
 import com.nhave.nhwrench.common.handlers.ItemHandler;
+import com.nhave.nhwrench.common.register.WrenchModeRegistry;
+import com.nhave.nhwrench.common.register.WrenchRegistry;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -37,6 +39,9 @@ public class NHWrench
     	
     	MC_CONFIG_DIR = event.getModConfigurationDirectory().getAbsolutePath();
 		proxy.setupConfig(event.getSuggestedConfigurationFile());
+
+		API.modeRegister = new WrenchModeRegistry();
+		API.integrationRegister = new WrenchRegistry();
 		
     	ItemHandler.preInit();
     	proxy.registerRenderers();

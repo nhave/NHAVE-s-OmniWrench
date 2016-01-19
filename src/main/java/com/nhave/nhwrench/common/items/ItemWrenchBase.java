@@ -8,12 +8,12 @@ import com.nhave.nhlib.helpers.NBTHelper;
 import com.nhave.nhlib.interfaces.IKeyBound;
 import com.nhave.nhwrench.api.IEntityInteraction;
 import com.nhave.nhwrench.api.IWrenchMode;
-import com.nhave.nhwrench.api.WrenchModeRegistry;
-import com.nhave.nhwrench.api.WrenchRegistry;
 import com.nhave.nhwrench.common.handlers.ItemHandler;
 import com.nhave.nhwrench.common.helpers.BlockRotationHelper;
 import com.nhave.nhwrench.common.helpers.CustomDismantleHelper;
 import com.nhave.nhwrench.common.helpers.HarvestLevelHelper;
+import com.nhave.nhwrench.common.register.WrenchModeRegistry;
+import com.nhave.nhwrench.common.register.WrenchRegistry;
 
 import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -314,7 +314,11 @@ public abstract class ItemWrenchBase extends Item implements
 	@Override
 	public boolean damage(ItemStack stack, int damage, EntityPlayer player, boolean simulated)
 	{
-		player.swingItem();
-		return true;
+		if (this.getWrenchMode(player.getCurrentEquippedItem()) == ItemHandler.modeWrench)
+		{
+			player.swingItem();
+			return true;
+		}
+		else return false;
 	}
 }

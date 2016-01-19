@@ -1,7 +1,10 @@
-package com.nhave.nhwrench.api;
+package com.nhave.nhwrench.common.register;
 
 import java.util.Iterator;
 import java.util.TreeMap;
+
+import com.nhave.nhwrench.api.IModeRegister;
+import com.nhave.nhwrench.api.IWrenchMode;
 
 
 /**
@@ -9,7 +12,7 @@ import java.util.TreeMap;
  * 
  * @author nhave
  */
-public final class WrenchModeRegistry
+public final class WrenchModeRegistry implements IModeRegister
 {
 	public static final TreeMap<Integer, IWrenchMode> _Modes = new TreeMap<Integer, IWrenchMode>();
     
@@ -19,7 +22,7 @@ public final class WrenchModeRegistry
      * @param mode
      *            The mode to register.
      */
-    public static void registerMode(IWrenchMode mode) 
+    public void registerMode(IWrenchMode mode) 
     {
     	_Modes.put(_Modes.size(), mode);
     }

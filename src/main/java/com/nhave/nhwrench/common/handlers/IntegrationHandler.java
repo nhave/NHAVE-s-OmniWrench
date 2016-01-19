@@ -1,6 +1,6 @@
 package com.nhave.nhwrench.common.handlers;
 
-import com.nhave.nhwrench.api.WrenchRegistry;
+import com.nhave.nhwrench.api.API;
 
 import cpw.mods.fml.common.Loader;
 
@@ -17,7 +17,7 @@ public class IntegrationHandler
 		{
 			try
 			{
-				WrenchRegistry.registerStatic("BuildCraft");
+				API.integrationRegister.registerStatic("BuildCraft");
 			}
 			catch (Exception e) {}
 		}
@@ -25,7 +25,7 @@ public class IntegrationHandler
 		{
 			try
 			{
-				WrenchRegistry.registerStatic("CarpentersBlocks");
+				API.integrationRegister.registerStatic("CarpentersBlocks");
 			}
 			catch (Exception e) {}
 		}
@@ -33,7 +33,7 @@ public class IntegrationHandler
 		{
 			try
 			{
-				WrenchRegistry.registerStatic("EnderIO");
+				API.integrationRegister.registerStatic("EnderIO");
 			}
 			catch (Exception e) {}
 		}
@@ -41,7 +41,7 @@ public class IntegrationHandler
 		{
 			try
 			{
-				WrenchRegistry.registerStatic("Railcraft");
+				API.integrationRegister.registerStatic("Railcraft");
 			}
 			catch (Exception e) {}
 		}
@@ -49,7 +49,7 @@ public class IntegrationHandler
 		{
 			try
 			{
-				WrenchRegistry.registerStatic("AE2");
+				API.integrationRegister.registerStatic("AE2");
 			}
 			catch (Exception e) {}
 		}

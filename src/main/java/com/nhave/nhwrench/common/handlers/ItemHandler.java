@@ -3,7 +3,7 @@ package com.nhave.nhwrench.common.handlers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nhave.nhwrench.api.WrenchRegistry;
+import com.nhave.nhwrench.api.API;
 import com.nhave.nhwrench.common.core.NHWrench;
 import com.nhave.nhwrench.common.core.Reference;
 import com.nhave.nhwrench.common.handlers.wrench.UtilsHandler;
@@ -12,6 +12,7 @@ import com.nhave.nhwrench.common.items.ItemComponent;
 import com.nhave.nhwrench.common.items.ItemLumar;
 import com.nhave.nhwrench.common.items.ItemOmniWrench;
 import com.nhave.nhwrench.common.items.ItemShader;
+import com.nhave.nhwrench.common.items.ItemShaderMultiTexture;
 import com.nhave.nhwrench.common.misc.Colors;
 import com.nhave.nhwrench.common.modes.ModeMain;
 import com.nhave.nhwrench.common.modes.ModeUtil;
@@ -77,7 +78,7 @@ public class ItemHandler
 		itemShaderBotany = new ItemShader("Botany").setShaderColor(Colors.green).setBaseName("nhwrench:Shaders/Botany_0").setOverlayName("nhwrench:Blank").setRarity(3).setCreativeTab(NHWrench.creativeTab);
 		itemShaderTaint = new ItemShader("Taint").setShaderColor(Colors.purple).setBaseName("nhwrench:Shaders/Taint_0").setOverlayName("nhwrench:Blank").setRarity(3).setCreativeTab(NHWrench.creativeTab);
 		itemShaderAeonic = new ItemShader("Aeonic").setShaderColor(Colors.lightBlue).setBaseName("nhwrench:Shaders/Aeonic_0").setOverlayName("nhwrench:Blank").setRarity(2).setCreativeTab(NHWrench.creativeTab);
-		itemShaderPrototype = new ItemShader("Prototype").setShaderColor(Colors.lime).setTextureName("nhwrench:Shaders/Prototype").setRarity(3).setCreativeTab(NHWrench.creativeTab);
+		itemShaderPrototype = new ItemShaderMultiTexture("Prototype").setShaderColor(Colors.lime).setTextureName("nhwrench:Shaders/Prototype").setRarity(3).setCreativeTab(NHWrench.creativeTab);
 		itemShaderMillenium = new ItemShader("Millenium").setShaderColor(Colors.lightGray).setBaseName("nhwrench:Shaders/Millenium_0").setOverlayName("nhwrench:Blank").setRarity(3).setCreativeTab(NHWrench.creativeTab);
 		
 		registerItem(itemWrench);
@@ -129,7 +130,7 @@ public class ItemHandler
 	
 	private static void addHandlers()
 	{
-		WrenchRegistry.registerHandler(new UtilsHandler());
+		API.integrationRegister.registerHandler(new UtilsHandler());
 	}
 	
 	private static void setCustomDismantle()

@@ -1,10 +1,12 @@
-package com.nhave.nhwrench.api;
+package com.nhave.nhwrench.common.register;
 
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import com.google.common.collect.Lists;
+import com.nhave.nhwrench.api.IIntegrationRegister;
+import com.nhave.nhwrench.api.IWrenchHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.ModMetadata;
@@ -15,7 +17,7 @@ import cpw.mods.fml.common.ModMetadata;
  * 
  * @author nhave
  */
-public final class WrenchRegistry
+public final class WrenchRegistry implements IIntegrationRegister
 {
 	private static final Map<Integer, IWrenchHandler> _Handlers = new TreeMap<Integer, IWrenchHandler>();
 	
@@ -32,7 +34,7 @@ public final class WrenchRegistry
      * @param handler
      *            The handler for a mod.
      */
-    public static void registerHandler(IWrenchHandler handler) 
+    public void registerHandler(IWrenchHandler handler) 
     {
     	_Handlers.put(_Handlers.size(), handler);
     	//updateModMeta(description);
@@ -46,7 +48,7 @@ public final class WrenchRegistry
      * @param name
      *            A name for the handler.
      */
-    public static void registerHandler(IWrenchHandler handler, String name) 
+    public void registerHandler(IWrenchHandler handler, String name) 
     {
     	registerHandler(handler);
     	handlerList.add(name);
@@ -59,7 +61,7 @@ public final class WrenchRegistry
      * @param name
      *            A name for the handler.
      */
-    public static void registerStatic(String name) 
+    public void registerStatic(String name) 
     {
     	handlerList.add(name);
     	updateModMeta(description);

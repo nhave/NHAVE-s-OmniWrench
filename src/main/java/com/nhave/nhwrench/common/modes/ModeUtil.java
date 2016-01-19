@@ -1,10 +1,10 @@
 package com.nhave.nhwrench.common.modes;
 
-import net.minecraft.item.ItemStack;
-
+import com.nhave.nhwrench.api.API;
 import com.nhave.nhwrench.api.IWrenchMode;
-import com.nhave.nhwrench.api.WrenchModeRegistry;
 import com.nhave.nhwrench.common.handlers.ConfigHandler;
+
+import net.minecraft.item.ItemStack;
 
 public class ModeUtil implements IWrenchMode
 {
@@ -13,7 +13,7 @@ public class ModeUtil implements IWrenchMode
 	public ModeUtil(String mode)
 	{
 		this.name = mode;
-		WrenchModeRegistry.registerMode(this);
+		API.modeRegister.registerMode(this);
 	}
 	
 	@Override

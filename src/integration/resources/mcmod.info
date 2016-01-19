@@ -1,0 +1,17 @@
+[
+{
+  "modid": "nhintegration",
+  "name": "NHWRENCH Integrations",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["nhave"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [],
+  "parent":"nhwrench"
+}
+]

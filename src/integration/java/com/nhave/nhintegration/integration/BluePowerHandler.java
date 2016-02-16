@@ -27,6 +27,7 @@ public class BluePowerHandler implements IWrenchHandler
 	public boolean handleWrench(String mode, ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
 	{
 		if (!player.isSneaking()) return false;
+		if (!mode.equals("wrmode.wrench")) return false;
 		
         Block block = world.getBlock(x, y, z);
         TileEntity tile = world.getTileEntity(x, y, z);

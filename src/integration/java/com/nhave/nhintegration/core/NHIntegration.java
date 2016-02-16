@@ -26,7 +26,7 @@ public class NHIntegration
     public void preInit(FMLPreInitializationEvent event)
     {
     	FMLCommonHandler.instance().bus().register(new ConfigHandler());
-		ConfigHandler.init();
+		ConfigHandler.init(event.getSuggestedConfigurationFile());
     }
     
     @Mod.EventHandler

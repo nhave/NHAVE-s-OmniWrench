@@ -61,15 +61,15 @@ public class IEHandler implements IWrenchHandler
 						max = ((IEnergyReceiver)world.getTileEntity(x, y, z)).getMaxEnergyStored(ForgeDirection.getOrientation(side));
 						stored = ((IEnergyReceiver)world.getTileEntity(x, y, z)).getEnergyStored(ForgeDirection.getOrientation(side));
 					}
-					else if(world.getTileEntity(x, y, z) instanceof IEnergyProvider)
+					else if (world.getTileEntity(x, y, z) instanceof IEnergyProvider)
 					{
 						max = ((IEnergyProvider)world.getTileEntity(x, y, z)).getMaxEnergyStored(ForgeDirection.getOrientation(side));
 						stored = ((IEnergyProvider)world.getTileEntity(x, y, z)).getEnergyStored(ForgeDirection.getOrientation(side));
 					}
-					if(max>0)
-						player.addChatMessage(new ChatComponentTranslation(Lib.CHAT_INFO+"energyStorage", stored,max));
+					if(max>0) player.addChatMessage(new ChatComponentTranslation(Lib.CHAT_INFO+"energyStorage", stored,max));
+					
+					return true;
 				}
-				return true;
 			}
 		}
 		return false;

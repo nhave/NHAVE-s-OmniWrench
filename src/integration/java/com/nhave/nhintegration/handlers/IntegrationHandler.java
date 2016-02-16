@@ -2,11 +2,14 @@ package com.nhave.nhintegration.handlers;
 
 import com.nhave.nhintegration.integration.BiblioHandler;
 import com.nhave.nhintegration.integration.BluePowerHandler;
+import com.nhave.nhintegration.integration.CoFHHandler;
 import com.nhave.nhintegration.integration.EnhPortHandler;
+import com.nhave.nhintegration.integration.GardenHandler;
 import com.nhave.nhintegration.integration.IC2Handler;
 import com.nhave.nhintegration.integration.IEHandler;
 import com.nhave.nhintegration.integration.MekaHandler;
 import com.nhave.nhintegration.integration.PneuHandler;
+import com.nhave.nhintegration.integration.SDrawersHandler;
 import com.nhave.nhintegration.integration.SteamHandler;
 import com.nhave.nhwrench.api.API;
 import com.nhave.nhwrench.common.helpers.CustomDismantleHelper;
@@ -24,6 +27,14 @@ public class IntegrationHandler
 {
 	public static void postInit()
 	{
+		if (Loader.isModLoaded("CoFHCore") && ConfigHandler.enableCofh)
+		{
+			try
+			{
+				API.integrationRegister.registerHandler(new CoFHHandler(), "CoFHCore");
+			}
+			catch (Exception e) {}
+		}
 		if (Loader.isModLoaded("IC2") && ConfigHandler.enableIC2)
 		{
 			try
@@ -91,6 +102,22 @@ public class IntegrationHandler
 			}
 			catch (Exception e) {}
 		}
+		if (Loader.isModLoaded("GardenCore") && ConfigHandler.enableGardenStuff)
+		{
+			try
+			{
+				API.integrationRegister.registerHandler(new GardenHandler(), "Garden Stuff");
+			}
+			catch (Exception e) {}
+		}
+		if (Loader.isModLoaded("StorageDrawers") && ConfigHandler.enableStorageDrawers)
+		{
+			try
+			{
+				API.integrationRegister.registerHandler(new SDrawersHandler(), "Storage Drawers");
+			}
+			catch (Exception e) {}
+		}
 		if (Loader.isModLoaded("quantumflux") && ConfigHandler.enableQuantumFlux)
 		{
 			try
@@ -132,8 +159,70 @@ public class IntegrationHandler
 		{
 			try
 			{
-				CustomDismantleHelper.addBlock("tile.tinkerTable", false);
-				API.integrationRegister.registerStatic("Machinemuse's Modular Power Suits");
+				CustomDismantleHelper.addBlock("powersuits:tile.tinkerTable", false);
+				API.integrationRegister.registerStatic("Modular Power Suits");
+			}
+			catch (Exception e) {}
+		}
+		if (Loader.isModLoaded("BuildCraft|Builders") && ConfigHandler.enableBuildCraft)
+		{
+			try
+			{
+				CustomDismantleHelper.addBlock("BuildCraft|Builders:machineBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Builders:fillerBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Builders:builderBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Builders:architectBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Builders:libraryBlock", false);
+			}
+			catch (Exception e) {}
+		}
+		if (Loader.isModLoaded("BuildCraft|Factory") && ConfigHandler.enableBuildCraft)
+		{
+			try
+			{
+				CustomDismantleHelper.addBlock("BuildCraft|Factory:miningWellBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Factory:autoWorkbenchBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Factory:tankBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Factory:pumpBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Factory:floodGateBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Factory:refineryBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Factory:blockHopper", false);
+			}
+			catch (Exception e) {}
+		}
+		if (Loader.isModLoaded("BuildCraft|Robotics") && ConfigHandler.enableBuildCraft)
+		{
+			try
+			{
+				CustomDismantleHelper.addBlock("BuildCraft|Robotics:zonePlan", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Robotics:requester", false);
+			}
+			catch (Exception e) {}
+		}
+		if (Loader.isModLoaded("BuildCraft|Transport") && ConfigHandler.enableBuildCraft)
+		{
+			try
+			{
+				CustomDismantleHelper.addBlock("BuildCraft|Transport:filteredBufferBlock", false);
+			}
+			catch (Exception e) {}
+		}
+		if (Loader.isModLoaded("BuildCraft|Silicon") && ConfigHandler.enableBuildCraft)
+		{
+			try
+			{
+				CustomDismantleHelper.addBlock("BuildCraft|Silicon:laserBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Silicon:laserTableBlock", false);
+				CustomDismantleHelper.addBlock("BuildCraft|Silicon:packagerBlock", false);
+			}
+			catch (Exception e) {}
+		}
+		if (Loader.isModLoaded("BuildCraft|Core") && ConfigHandler.enableBuildCraft)
+		{
+			try
+			{
+				CustomDismantleHelper.addBlock("BuildCraft|Core:engineBlock", false);
+				API.integrationRegister.registerStatic("BuildCraft");
 			}
 			catch (Exception e) {}
 		}

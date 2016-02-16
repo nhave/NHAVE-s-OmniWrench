@@ -11,8 +11,19 @@ import cpw.mods.fml.common.Loader;
  */
 public class IntegrationHandler
 {
+	public static void init() {}
+	
 	public static void postInit()
 	{
+		/*if (Loader.isModLoaded("guideapi"))
+		{
+			try
+			{
+				RecipeHolder.init();
+				GuideWrench.registerGuide();
+			}
+			catch (Exception e) {}
+		}*/
 		if (Loader.isModLoaded("BuildCraft"))
 		{
 			try

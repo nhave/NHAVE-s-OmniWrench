@@ -10,7 +10,10 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class ClientProxy extends CommonProxy
 {
 	@Override
-	public void registerRenderers() {}
+	public void registerRenderers()
+	{
+        //FMLCommonHandler.instance().bus().register(new HudTickHandler());
+	}
 	
 	@Override
 	public void setupConfig(File configFile)

@@ -3,6 +3,11 @@ package com.nhave.nhwrench.common.handlers.wrench;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.nhave.nhwrench.api.IEntityInteraction;
+import com.nhave.nhwrench.api.IPostUse;
+import com.nhave.nhwrench.api.IWrenchHandler;
+import com.nhave.nhwrench.common.handlers.ConfigHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -13,12 +18,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 
-import com.nhave.nhwrench.api.IEntityInteraction;
-import com.nhave.nhwrench.api.IWrenchHandler;
-import com.nhave.nhwrench.common.handlers.ConfigHandler;
-
-public class UtilsHandler implements IWrenchHandler, IEntityInteraction
+public class UtilsHandler implements IWrenchHandler, IEntityInteraction, IPostUse
 {
 	@Override
 	public boolean handleWrench(String mode, ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
@@ -82,6 +85,31 @@ public class UtilsHandler implements IWrenchHandler, IEntityInteraction
 				return true;
 			}
 			return false;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean handlePostUse(String mode, ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+	{
+		if (!ConfigHandler.enableUtilMode || !mode.equals("wrmode.util")) return false;
+        
+		if (ConfigHandler.enableHoe)
+		{
+			if (!player.canPlayerEdit(x, y, z, side, itemStack))
+			{
+				return false;
+			}
+			UseHoeEvent event = new UseHoeEvent(player, itemStack, world, x, y, z);
+			if (MinecraftForge.EVENT_BUS.post(event))
+			{
+				return false;
+			}
+			if (event.getResult() == cpw.mods.fml.common.eventhandler.Event.Result.ALLOW)
+			{
+				System.out.print("test");
+				return true;
+			}
 		}
 		return false;
 	}

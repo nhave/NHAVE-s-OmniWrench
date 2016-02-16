@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
+import com.nhave.nhlib.api.item.IHudItem;
 import com.nhave.nhlib.api.item.IShadeAble;
 import com.nhave.nhlib.helpers.NBTHelper;
 import com.nhave.nhlib.main.KeyBinds;
 import com.nhave.nhlib.shaders.ShaderManager;
 import com.nhave.nhlib.util.StringUtils;
+import com.nhave.nhwrench.common.handlers.ConfigHandler;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,7 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
-public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble
+public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble, IHudItem
 {
 	private IIcon itemIcon[];
 	
@@ -71,25 +73,56 @@ public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs creativeTab, List list)
 	{
-		for (int i = 0; i < colorCodes.length; ++i)
+		if (ConfigHandler.usePower)
 		{
-			ItemStack stack = new ItemStack(item);
-			list.add(NBTHelper.setStackInteger(stack, "WRENCH", "COLOR", colorCodes[i]));
+			ItemStack noPower = new ItemStack(item);
+			ItemStack fullPower = new ItemStack(item);
+			NBTHelper.setInteger(fullPower, "POWER", "STORED", this.maxPower);
+			list.add(noPower);
+			list.add(fullPower);
+		}
+		else
+		{
+			for (int i = 0; i < colorCodes.length; ++i)
+			{
+				ItemStack stack = new ItemStack(item);
+				list.add(NBTHelper.setStackInteger(stack, "WRENCH", "COLOR", colorCodes[i]));
+			}
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean p_77624_4_)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
 	{
 		list.add(StringUtils.BOLD + StatCollector.translateToLocal("tooltip.item.omnitool"));
 		list.add(StringUtils.PURPLE + StatCollector.translateToLocal("tooltip.shader.rarity.legendary"));
+		getWrenchMode(stack).addInformation(stack, player, list, flag);
 		
-		String shaderName = StatCollector.translateToLocal("tooltip.shader.none");
-		if (ShaderManager.hasShader(stack)) shaderName = ShaderManager.getShader(stack).getDisplayName();
-		list.add(StatCollector.translateToLocal("tooltip.shader.current") + ": " + "§e" + "§o" + shaderName);
-		
-		list.add("§7" + StringUtils.localize("tooltip.wrmode.press") + " " + "§e" + "§o" + Keyboard.getKeyName(KeyBinds.toggle.getKeyCode()) + " " + "§r" + "§7" + StringUtils.localize("tooltip.wrmode.change") + "§r");
-		list.add(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + this.getWrenchModeAsString(stack));
+		if (StringUtils.isShiftKeyDown())
+		{
+			if (ConfigHandler.usePower)
+			{
+				list.add(StatCollector.translateToLocal("tooltip.power.charge") + ": " + getEnergyStored(stack) + " / " + this.maxPower + " RF");
+				list.add(StringUtils.ORANGE + this.powerUsage + " " + StatCollector.translateToLocal("tooltip.power.use"));
+			}
+			
+			String shaderName = StatCollector.translateToLocal("tooltip.shader.none");
+			if (ShaderManager.hasShader(stack)) shaderName = ShaderManager.getShader(stack).getDisplayName();
+			list.add(StatCollector.translateToLocal("tooltip.shader.current") + ": " + "§e" + "§o" + shaderName + "§r");
+
+			list.add("§7" + StringUtils.localize("tooltip.wrmode.press") + " " + "§e" + "§o" + Keyboard.getKeyName(KeyBinds.toggle.getKeyCode()) + " " + "§r" + "§7" + StringUtils.localize("tooltip.wrmode.change") + "§r");
+			list.add(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + this.getWrenchModeAsString(stack) + "§r");
+		}
+		else list.add(StringUtils.shiftForInfo);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addHudInfo(ItemStack stack, EntityPlayer player, List list)
+	{
+		list.add(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + this.getWrenchModeAsString(stack) + "§r");
+		if (this.getWrenchMode(stack) instanceof IHudItem) ((IHudItem)this.getWrenchMode(stack)).addHudInfo(stack, player, list);
+		if (ConfigHandler.usePower) list.add(StatCollector.translateToLocal("tooltip.power.charge") + ": " + "§e" + "§o" + getEnergyStored(stack) + " / " + this.maxPower + " RF" + "§r");
 	}
 }

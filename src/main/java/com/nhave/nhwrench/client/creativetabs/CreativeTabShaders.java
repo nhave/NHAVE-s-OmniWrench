@@ -11,15 +11,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class CreativeTabWrench extends CreativeTabs
+public class CreativeTabShaders extends CreativeTabs
 {
 	private List<ItemStack> additionalItems = new ArrayList<ItemStack>();
 	
-	public CreativeTabWrench(String name)
+	public CreativeTabShaders(String name)
 	{
 		super(name);
 	}
-	
+
 	@Override
     @SideOnly(Side.CLIENT)
     public void displayAllReleventItems(List par1List)
@@ -35,7 +35,7 @@ public class CreativeTabWrench extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-		return ItemHandler._TabIconItems;
+		return ItemHandler._TabIconShaders;
 	}
 	
 	public void addStackToTab(ItemStack stack)

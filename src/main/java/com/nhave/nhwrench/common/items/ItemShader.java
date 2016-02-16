@@ -3,7 +3,9 @@ package com.nhave.nhwrench.common.items;
 import java.util.List;
 
 import com.nhave.nhlib.api.item.IItemShader;
+import com.nhave.nhlib.helpers.TooltipHelper;
 import com.nhave.nhlib.util.StringUtils;
+import com.nhave.nhwrench.common.core.NHWrench;
 import com.nhave.nhwrench.common.handlers.ItemHandler;
 
 import cpw.mods.fml.relauncher.Side;
@@ -14,12 +16,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemShader extends Item implements IItemShader
 {
 	private String textureName = "nhwrench:Blank";
 	private String textureOverlayName = "nhwrench:Blank";
+	private String shaderArtist = "nhave";
 	private IIcon itemIcon[];
 	private Boolean supportsColor = false;
 	private String shaderName;
@@ -33,6 +35,8 @@ public class ItemShader extends Item implements IItemShader
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("nhwrench.itemShader."+name);
 		this.shaderName = name;
+		ItemHandler.allShaders.add(this);
+		this.setCreativeTab(NHWrench.creativeTabShaders);
 	}
 	
 	public ItemShader setSupportsColor()
@@ -72,6 +76,12 @@ public class ItemShader extends Item implements IItemShader
 		if (result > 3) result = 3;
 		else if (result < 0) result = 0;
 		this.rarity = result;
+		return this;
+	}
+	
+	public ItemShader setArtist(String artist)
+	{
+		this.shaderArtist = artist;
 		return this;
 	}
 	
@@ -133,7 +143,13 @@ public class ItemShader extends Item implements IItemShader
 	{
 		list.add(StringUtils.BOLD + StatCollector.translateToLocal("tooltip.item.shader") + "     ");
 		list.add(rarityColors[rarity] + StatCollector.translateToLocal("tooltip.shader.rarity."+rarityNames[rarity]));
-		list.add(StatCollector.translateToLocal("tooltip.shader.appliesto") + ":");
-		list.add("  " + "§e" + "§o" + ItemHandler.itemWrench.getItemStackDisplayName(new ItemStack(ItemHandler.itemWrench)));
+		if (StringUtils.isShiftKeyDown())
+		{
+			TooltipHelper.addHiddenTooltip(list, "tooltip.shader." + this.shaderName, ";");
+			list.add(StatCollector.translateToLocal("tooltip.shader.artist") + ": " + "§e" + "§o" + shaderArtist);
+			list.add(StatCollector.translateToLocal("tooltip.shader.appliesto") + ":");
+			list.add("  " + "§e" + "§o" + ItemHandler.itemWrench.getItemStackDisplayName(new ItemStack(ItemHandler.itemWrench)));
+		}
+		else list.add(StringUtils.shiftForInfo);
 	}
 }

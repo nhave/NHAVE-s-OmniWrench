@@ -3,6 +3,7 @@ package com.nhave.nhwrench.common.core;
 import org.apache.logging.log4j.Logger;
 
 import com.nhave.nhwrench.api.API;
+import com.nhave.nhwrench.client.creativetabs.CreativeTabShaders;
 import com.nhave.nhwrench.client.creativetabs.CreativeTabWrench;
 import com.nhave.nhwrench.common.handlers.CraftingHandler;
 import com.nhave.nhwrench.common.handlers.IntegrationHandler;
@@ -15,7 +16,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.creativetab.CreativeTabs;
 
 @Mod(modid = Reference.MODID, version = Reference.VERSION, acceptedMinecraftVersions = Reference.MCVERSIONS, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUIFACTORY)
 public class NHWrench
@@ -23,8 +23,9 @@ public class NHWrench
     public static Logger logger;
     
 	public static String MC_CONFIG_DIR;
-	
-	public static CreativeTabs creativeTab = new CreativeTabWrench("nhwrench");
+
+	public static final CreativeTabWrench creativeTabItems = new CreativeTabWrench("nhwrench.items");
+	public static final CreativeTabShaders creativeTabShaders = new CreativeTabShaders("nhwrench.shaders");
     
     @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.COMMON_PROXY)
 	public static CommonProxy proxy;
@@ -44,13 +45,16 @@ public class NHWrench
 		API.integrationRegister = new WrenchRegistry();
 		
     	ItemHandler.preInit();
-    	proxy.registerRenderers();
     	
 		WrenchRegistry.updateModMeta(event.getModMetadata().description);
     }
     
     @Mod.EventHandler
-    public void load(FMLInitializationEvent event) {}
+    public void load(FMLInitializationEvent event)
+    {
+    	IntegrationHandler.init();
+    	proxy.registerRenderers();
+    }
     
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)

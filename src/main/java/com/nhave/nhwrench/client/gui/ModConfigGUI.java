@@ -3,16 +3,15 @@ package com.nhave.nhwrench.client.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.config.ConfigElement;
-
 import com.nhave.nhwrench.common.handlers.ConfigHandler;
 
 import cpw.mods.fml.client.config.DummyConfigElement;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.client.config.IConfigElement;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.config.ConfigElement;
 
 public class ModConfigGUI extends GuiConfig
 {

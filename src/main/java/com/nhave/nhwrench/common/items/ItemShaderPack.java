@@ -1,9 +1,11 @@
-package com.nhave.nhwrench.common.handlers;
+package com.nhave.nhwrench.common.items;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import com.nhave.nhlib.util.StringUtils;
+import com.nhave.nhwrench.common.handlers.ItemHandler;
 import com.nhave.nhwrench.common.misc.Colors;
 
 import cpw.mods.fml.relauncher.Side;
@@ -52,7 +54,35 @@ public class ItemShaderPack extends Item
 			List<ItemStack> shaderList = getListFromMeta(stack.getItemDamage());
 			if (!shaderList.isEmpty())
 			{
-				for (int i = 0; i < 11; ++i)
+				float chance = 0.4F;
+				if (stack.getItemDamage() == 1) chance = 0.6F;
+				else if (stack.getItemDamage() == 2) chance = 0.8F;
+				Random rand = new Random();
+				if (rand.nextFloat() <= chance)
+				{
+					List<ItemStack> newList = new ArrayList<ItemStack>();
+					for (ItemStack shader: shaderList)
+					{
+						if (!player.inventory.hasItemStack(shader.copy()))
+						{
+							newList.add(shader.copy());
+						}
+					}
+					if (!newList.isEmpty() && player.inventory.addItemStackToInventory(getRandomShader(newList)))
+					{
+						--stack.stackSize;
+					}
+					else if (player.inventory.addItemStackToInventory(getRandomShader(shaderList)))
+					{
+						--stack.stackSize;
+					}
+				}
+				else if (player.inventory.addItemStackToInventory(getRandomShader(shaderList)))
+				{
+					--stack.stackSize;
+				}
+				
+				/*for (int i = 0; i < 11; ++i)
 				{
 					ItemStack shader = getRandomShader(shaderList);
 					if (i < 10)
@@ -68,7 +98,7 @@ public class ItemShaderPack extends Item
 						--stack.stackSize;
 						break;
 					}
-				}
+				}*/
 			}
 		}
 		return stack;

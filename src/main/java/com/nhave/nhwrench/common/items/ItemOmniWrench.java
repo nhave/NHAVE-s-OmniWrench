@@ -97,7 +97,6 @@ public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble, IHudIt
 	{
 		list.add(StringUtils.BOLD + StatCollector.translateToLocal("tooltip.item.omnitool"));
 		list.add(StringUtils.PURPLE + StatCollector.translateToLocal("tooltip.shader.rarity.legendary"));
-		getWrenchMode(stack).addInformation(stack, player, list, flag);
 		
 		if (StringUtils.isShiftKeyDown())
 		{
@@ -113,6 +112,7 @@ public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble, IHudIt
 
 			list.add("§7" + StringUtils.localize("tooltip.wrmode.press") + " " + "§e" + "§o" + Keyboard.getKeyName(KeyBinds.toggle.getKeyCode()) + " " + "§r" + "§7" + StringUtils.localize("tooltip.wrmode.change") + "§r");
 			list.add(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + this.getWrenchModeAsString(stack) + "§r");
+			getWrenchMode(stack).addInformation(stack, player, list, flag);
 		}
 		else list.add(StringUtils.shiftForInfo);
 	}
@@ -121,6 +121,7 @@ public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble, IHudIt
 	@SideOnly(Side.CLIENT)
 	public void addHudInfo(ItemStack stack, EntityPlayer player, List list)
 	{
+		list.add("§e" + "§o" + this.getItemStackDisplayName(stack) + "§r");
 		list.add(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + this.getWrenchModeAsString(stack) + "§r");
 		if (this.getWrenchMode(stack) instanceof IHudItem) ((IHudItem)this.getWrenchMode(stack)).addHudInfo(stack, player, list);
 		if (ConfigHandler.usePower) list.add(StatCollector.translateToLocal("tooltip.power.charge") + ": " + "§e" + "§o" + getEnergyStored(stack) + " / " + this.maxPower + " RF" + "§r");

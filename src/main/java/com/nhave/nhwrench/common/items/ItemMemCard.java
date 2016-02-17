@@ -165,6 +165,7 @@ public class ItemMemCard extends Item implements IKeyBound, IHudItem
 	@SideOnly(Side.CLIENT)
 	public void addHudInfo(ItemStack stack, EntityPlayer player, List list)
 	{
+		list.add("§e" + "§o" + this.getItemStackDisplayName(stack) + "§r");
 		if (isLocked(stack)) list.add(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + StatCollector.translateToLocal("tooltip.readonly") + "§r");
 		else  list.add(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + StatCollector.translateToLocal("tooltip.readwrite") + "§r");
 	}

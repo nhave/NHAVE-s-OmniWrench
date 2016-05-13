@@ -43,11 +43,14 @@ public abstract class ItemWrenchBase extends ItemElectricBase implements
 	IConduitControl, com.bluepowermod.api.misc.IScrewdriver
 {
 	public static int[] colorCodes = new int[] {1644825, 16711680, 65280, 6704179, 255, 11685080, 5013401, 10066329, 6710886, 15892389, 8388371, 15059968, 6730495, 15027416, 16757299, 16777215};
-	public static String[] ForgeDirBlacklist = new String[] {"bibliocraft"};
+	public static String[] ForgeDirBlacklist = new String[] {"bibliocraft", "ic2.core.block"};
+	
+	public double POWER_USE;
 	
 	public ItemWrenchBase()
 	{
-		super(ConfigHandler.maxPower, ConfigHandler.powerCharge, ConfigHandler.powerUsage);
+		super(ConfigHandler.maxPower * ConfigHandler.FROM_TE);
+		this.POWER_USE = ConfigHandler.powerUsage * ConfigHandler.FROM_TE;
 	}
 	
 	public IWrenchMode getWrenchMode(ItemStack stack)
@@ -138,12 +141,18 @@ public abstract class ItemWrenchBase extends ItemElectricBase implements
 		}
 		
 		/* === Forge Rotation === */
-		if (this.getWrenchMode(itemStack) == ItemHandler.modeWrench && !player.isSneaking())
+		if (!ConfigHandler.disableForgeDirection && this.getWrenchMode(itemStack) == ItemHandler.modeWrench && !player.isSneaking())
 		{
 			if ((block != null) && block.toString().contains("net.minecraft.block")) return false;
 			for (int i = 0; i < ForgeDirBlacklist.length; ++i)
 			{
 				if (tile != null && tile.toString().contains(ForgeDirBlacklist[i])) return false;
+				else if (block != null && block.toString().contains(ForgeDirBlacklist[i])) return false;
+			}
+			for (int i = 0; i < ConfigHandler.forgeDirBlacklist.length; ++i)
+			{
+				if (tile != null && tile.toString().contains(ConfigHandler.forgeDirBlacklist[i])) return false;
+				else if (block != null && block.toString().contains(ConfigHandler.forgeDirBlacklist[i])) return false;
 			}
 	        if ((block != null) && (block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))))
 	        {
@@ -229,6 +238,36 @@ public abstract class ItemWrenchBase extends ItemElectricBase implements
 				if (chat) entityPlayer.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + this.getWrenchModeAsString(itemStack) + "§r"));
 			}
 		}
+	}
+	
+	/* =========================================================== Power Code ===============================================================*/
+	
+	public boolean hasPower(ItemStack stack)
+	{
+		return !ConfigHandler.usePower || getEnergy(stack) >= this.POWER_USE;
+	}
+	
+	public boolean hasPower(ItemStack stack, EntityPlayer player)
+	{
+		return !ConfigHandler.usePower || player.capabilities.isCreativeMode || getEnergy(stack) >= this.POWER_USE;
+	}
+	
+	public void drawPower(ItemStack stack, EntityPlayer player)
+	{
+		setEnergy(stack, getEnergy(stack) - (this.POWER_USE));
+	}
+
+	@Override
+	public boolean canReceive(ItemStack itemStack)
+	{
+		if (ConfigHandler.usePower) return super.canReceive(itemStack);
+		else return false;
+	}
+
+	@Override
+	public boolean canSend(ItemStack itemStack)
+	{
+		return false;
 	}
 	
 	/* =========================================================== HARVEST LEVELS ===============================================================*/

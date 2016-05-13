@@ -11,6 +11,7 @@ import com.nhave.nhlib.main.KeyBinds;
 import com.nhave.nhlib.shaders.ShaderManager;
 import com.nhave.nhlib.util.StringUtils;
 import com.nhave.nhwrench.common.handlers.ConfigHandler;
+import com.nhave.nhwrench.common.util.PowerUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -75,11 +76,7 @@ public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble, IHudIt
 	{
 		if (ConfigHandler.usePower)
 		{
-			ItemStack noPower = new ItemStack(item);
-			ItemStack fullPower = new ItemStack(item);
-			NBTHelper.setInteger(fullPower, "POWER", "STORED", this.maxPower);
-			list.add(noPower);
-			list.add(fullPower);
+			super.getSubItems(item, creativeTab, list);
 		}
 		else
 		{
@@ -102,8 +99,8 @@ public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble, IHudIt
 		{
 			if (ConfigHandler.usePower)
 			{
-				list.add(StatCollector.translateToLocal("tooltip.power.charge") + ": " + getEnergyStored(stack) + " / " + this.maxPower + " RF");
-				list.add(StringUtils.ORANGE + this.powerUsage + " " + StatCollector.translateToLocal("tooltip.power.use"));
+				list.add(StatCollector.translateToLocal("tooltip.power.charge") + ": " + PowerUtils.getEnergyDisplay(getEnergy(stack)) + " / " + PowerUtils.getEnergyDisplay(this.MAX_ELECTRICITY));
+				list.add(StringUtils.ORANGE + PowerUtils.getEnergyDisplay(this.POWER_USE) + " " + StatCollector.translateToLocal("tooltip.power.use"));
 			}
 			
 			String shaderName = StatCollector.translateToLocal("tooltip.shader.none");
@@ -124,6 +121,6 @@ public class ItemOmniWrench extends ItemWrenchBase implements IShadeAble, IHudIt
 		list.add("§e" + "§o" + this.getItemStackDisplayName(stack) + "§r");
 		list.add(StatCollector.translateToLocal("tooltip.wrmode.mode") + ": " + "§e" + "§o" + this.getWrenchModeAsString(stack) + "§r");
 		if (this.getWrenchMode(stack) instanceof IHudItem) ((IHudItem)this.getWrenchMode(stack)).addHudInfo(stack, player, list);
-		if (ConfigHandler.usePower) list.add(StatCollector.translateToLocal("tooltip.power.charge") + ": " + "§e" + "§o" + getEnergyStored(stack) + " / " + this.maxPower + " RF" + "§r");
+		if (ConfigHandler.usePower) list.add(StatCollector.translateToLocal("tooltip.power.charge") + ": " + "§e" + "§o" + PowerUtils.getEnergyDisplay(getEnergy(stack)) + " / " + PowerUtils.getEnergyDisplay(this.MAX_ELECTRICITY) + "§r");
 	}
 }

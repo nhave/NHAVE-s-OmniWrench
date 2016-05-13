@@ -22,6 +22,8 @@ import com.nhave.nhwrench.common.modes.ModeUtil;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemHandler
@@ -50,6 +52,16 @@ public class ItemHandler
 	public static Item itemShaderVibrantBlue;
 	public static Item itemShaderBound;
 	public static Item itemShaderNHAVE;
+	public static Item itemShaderFuture;
+	public static Item itemShaderNVIDIA;
+	public static Item itemShaderTemple;
+	public static Item itemShaderSteam;
+	public static Item itemShaderTeam;
+	public static Item itemShaderBugFix;
+	public static Item itemShaderScorpion;
+	public static Item itemShaderHighEnd;
+	public static Item itemShaderMario;
+	public static Item itemShaderLuigi;
 
 	public static Item _TabIconItems;
 	public static Item _TabIconShaders;
@@ -93,7 +105,7 @@ public class ItemHandler
 		itemShaderDalek = new ItemShader("Dalek").setShaderColor(Colors.orange).setTextureName("nhwrench:Shaders/Dalek").setSupportsColor().setRarity(3);
 		itemShaderCofh = new ItemShader("Cofh").setShaderColor(Colors.lightBlue).setTextureName("nhwrench:Shaders/Cofh").setSupportsColor().setRarity(1);
 		itemShaderNyan = new ItemShader("Nyan").setShaderColor(Colors.pink).setTextureName("nhwrench:Shaders/Nyan").setRarity(2);
-		itemShaderDanish = new ItemShader("Danish").setShaderColor(Colors.red).setTextureName("nhwrench:Shaders/Danish").setRarity(1);
+		itemShaderDanish = new ItemShader("Danish").setShaderColor(Colors.red).setBaseName("nhwrench:Shaders/Danish_0").setOverlayName("nhwrench:Blank").setRarity(1);
 		itemShaderBotany = new ItemShader("Botany").setShaderColor(Colors.green).setBaseName("nhwrench:Shaders/Botany_0").setOverlayName("nhwrench:Blank").setRarity(3);
 		itemShaderTaint = new ItemShader("Taint").setShaderColor(Colors.purple).setBaseName("nhwrench:Shaders/Taint_0").setOverlayName("nhwrench:Blank").setRarity(3);
 		itemShaderAeonic = new ItemShader("Aeonic").setShaderColor(Colors.lightBlue).setBaseName("nhwrench:Shaders/Aeonic_0").setOverlayName("nhwrench:Blank").setRarity(2);
@@ -105,7 +117,17 @@ public class ItemHandler
 		itemShaderVibrantBlue = new ItemShader("VibrantBlue").setShaderColor(Colors.blue).setBaseName("nhwrench:Shaders/VibrantBlue_0").setOverlayName("nhwrench:Shaders/Basic_1").setSupportsColor();
 		itemShaderBound = new ItemShader("Bound").setArtist("Voxel_Friend").setShaderColor(Colors.yellow).setBaseName("nhwrench:Shaders/Bound_0").setOverlayName("nhwrench:Blank").setRarity(3);
 		itemShaderNHAVE = new ItemShaderMultiTexture("NHAVE").setShaderColor(Colors.red).setTextureName("nhwrench:Shaders/NHAVE").setRarity(3);
-
+		itemShaderFuture = new ItemShader("Future").setShaderColor(Colors.lightBlue).setBaseName("nhwrench:Shaders/Future_0").setOverlayName("nhwrench:Blank").setRarity(2);
+		itemShaderNVIDIA = new ItemShader("NVIDIA").setShaderColor(Colors.lime).setBaseName("nhwrench:Shaders/NVIDIA_0").setOverlayName("nhwrench:Blank").setRarity(1);
+		itemShaderTemple = new ItemShader("Temple").setShaderColor(4418111).setBaseName("nhwrench:Shaders/Temple_0").setOverlayName("nhwrench:Blank").setRarity(1);
+		itemShaderSteam = new ItemShader("Steam").setShaderColor(Colors.yellow).setBaseName("nhwrench:Shaders/Steam_0").setOverlayName("nhwrench:Blank").setRarity(2);
+		itemShaderTeam = new ItemShader("Team").setShaderColor(Colors.white).setTextureName("nhwrench:Shaders/Team").setSupportsColor().setRarity(1);
+		itemShaderBugFix = new ItemShader("BugFix").setShaderColor(Colors.yellow).setBaseName("nhwrench:Shaders/BugFix_0").setOverlayName("nhwrench:Blank").setRarity(1);
+		itemShaderScorpion = new ItemShader("Scorpion").setShaderColor(Colors.black).setTextureName("nhwrench:Shaders/Scorpion").setRarity(2);
+		itemShaderHighEnd = new ItemShader("HighEnd").setShaderColor(Colors.gray).setBaseName("nhwrench:Shaders/HighEnd_0").setOverlayName("nhwrench:Blank").setRarity(1);
+		itemShaderMario = new ItemShader("Mario").setShaderColor(Colors.red).setBaseName("nhwrench:Shaders/Mario_0").setOverlayName("nhwrench:Blank").setRarity(3);
+		itemShaderLuigi = new ItemShader("Luigi").setShaderColor(Colors.green).setBaseName("nhwrench:Shaders/Luigi_0").setOverlayName("nhwrench:Blank").setRarity(3);
+		
 		_TabIconItems = new Item().setCreativeTab(null).setTextureName("nhwrench:TabIconItems").setUnlocalizedName("nhwrench.tabicon.items");
 		_TabIconShaders = new Item().setCreativeTab(null).setTextureName("nhwrench:TabIconShaders").setUnlocalizedName("nhwrench.tabicon.shaders");
 		
@@ -133,7 +155,17 @@ public class ItemHandler
 		registerShader(itemShaderVibrantBlue, commonShaders);
 		registerItem(itemShaderBound);
 		registerItem(itemShaderNHAVE);
-
+		registerShader(itemShaderFuture, legendaryShaders);
+		registerShader(itemShaderNVIDIA, rareShaders);
+		registerShader(itemShaderTemple, rareShaders);
+		registerShader(itemShaderSteam, legendaryShaders);
+		registerItem(itemShaderTeam);
+		registerItem(itemShaderBugFix);
+		registerShader(itemShaderScorpion, legendaryShaders);
+		registerShader(itemShaderHighEnd, rareShaders);
+		registerItem(itemShaderMario);
+		registerItem(itemShaderLuigi);
+		
 		registerItem(_TabIconItems);
 		registerItem(_TabIconShaders);
 	}

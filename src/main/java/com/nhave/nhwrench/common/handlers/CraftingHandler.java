@@ -99,6 +99,19 @@ public class CraftingHandler
 			'X', Items.gold_ingot,
 			'Y', "lumarOrange",
 			'Z', Blocks.gold_block}));
+		//Team Shader
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHandler.itemShaderTeam),
+			new Object[] {"XYX", "YZY", "XYX",
+			'X', "nuggetGold",
+			'Y', "lumarGray",
+			'Z', new ItemStack(Blocks.stained_glass, 1, 0)}));
+		//Bug Fix Shader
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemHandler.itemShaderBugFix),
+			new Object[] {"XYX", "AZA", "XYX",
+			'X', "nuggetGold",
+			'Y', "lumarBlack",
+			'Z', Items.iron_ingot,
+			'A', "lumarYellow"}));
 		//Exotic Shaders
 		addAnvilNamedShader("FriendOfTheDoctor", new ItemStack(ItemHandler.itemShaderDalek));
 		addAnvilNamedShader("FlowerPower", new ItemStack(ItemHandler.itemShaderBotany));
@@ -107,6 +120,8 @@ public class CraftingHandler
 		addAnvilNamedShader("LetsKickSomeAstroid", new ItemStack(ItemHandler.itemShaderMillenium));
 		addAnvilNamedShader("BoundByBlood", new ItemStack(ItemHandler.itemShaderBound));
 		addAnvilNamedShader("OneToRuleThemAll", new ItemStack(ItemHandler.itemShaderNHAVE));
+		addAnvilNamedShader("ItsAMeMario!", new ItemStack(ItemHandler.itemShaderMario));
+		addAnvilNamedShader("LuigiTime!", new ItemStack(ItemHandler.itemShaderLuigi));
 		//Memory Cards
 		if (!ConfigHandler.disableMemCards)
 		{
@@ -162,7 +177,8 @@ public class CraftingHandler
 				evt.output=wrench;
 			}
 		}
-		else */if (evt.left.getItem() instanceof ItemShaderPack && evt.left.stackSize == 1 && evt.right.getItem() == Items.gold_nugget)
+		else */
+		if (evt.left.getItem() instanceof ItemShaderPack && evt.left.stackSize == 1 && evt.right.getItem() == Items.gold_nugget)
 		{
 			if ((evt.left.getItemDamage() < 1) || (ConfigHandler.exoticFromLegendary && evt.left.getItemDamage() < 2)) return;
 			if (_AnvilCrafting.containsKey(evt.name))

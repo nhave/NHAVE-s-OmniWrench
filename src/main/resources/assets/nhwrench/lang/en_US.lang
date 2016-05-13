@@ -30,6 +30,16 @@ item.nhwrench.itemShader.VibrantGreen.name=Vibrant Green
 item.nhwrench.itemShader.VibrantBlue.name=Vibrant Blue
 item.nhwrench.itemShader.Bound.name=Bloodbound
 item.nhwrench.itemShader.NHAVE.name=NHAVE's G3
+item.nhwrench.itemShader.Future.name=From The Future
+item.nhwrench.itemShader.NVIDIA.name=GL Error Code 8
+item.nhwrench.itemShader.Temple.name=10,000
+item.nhwrench.itemShader.Steam.name=The Power of Steam
+item.nhwrench.itemShader.Team.name=Team Player
+item.nhwrench.itemShader.BugFix.name=Bugs Be Gone
+item.nhwrench.itemShader.Scorpion.name=Sc0rp10n
+item.nhwrench.itemShader.HighEnd.name=High End
+item.nhwrench.itemShader.Mario.name=Mama mia! "Mario"
+item.nhwrench.itemShader.Luigi.name=Let's-a go! "Luigi"
 
 //---Tooltip---//
 tooltip.nh.color=Color
@@ -54,6 +64,11 @@ tooltip.shader.none=No Shader
 tooltip.shader.appliesto=Can apply to
 tooltip.shader.artist=Artist
 tooltip.shader.Gold=You must be either Rich or a Collector;to make this Shader.
+tooltip.shader.Future=Dont tell anyone!
+tooltip.shader.NVIDIA=NVIDIA Was Here!
+tooltip.shader.Temple=Something suggest that;the people of old knew;of this technology.
+tooltip.shader.Steam=Steam Power Baby!;I have now idea how;this even works.
+tooltip.shader.Scorpion=Tell me, was this wrench design;inspired by a scorpion?;No, what makes you think that.
 tooltip.readonly=Read Only
 tooltip.readwrite=Read/Write
 tooltip.owner=Owner
@@ -62,7 +77,7 @@ tooltip.memcard.info2=Sneak Right Click the Block to load data
 tooltip.memcard.info3=Sneak Right Click in the air to delete stored data
 tooltip.memcardadv.info=Only the Owner can unlock this
 tooltip.power.charge=Charge
-tooltip.power.use=RF Per Use
+tooltip.power.use=Per Use
 
 //---Config---//
 nh.cfg.title.main=NHWrench Configuration Menu

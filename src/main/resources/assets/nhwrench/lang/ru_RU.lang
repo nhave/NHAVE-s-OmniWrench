@@ -1,0 +1,77 @@
+//---Creative Tab---//
+itemGroup.nhwrench.items=NHWRENCH V3: Предметы
+itemGroup.nhwrench.shaders=NHWRENCH V3: Шейдеры
+
+//---Items---//
+item.nhwrench.itemWrench.name=Мультиключ G3
+item.nhwrench.itemComp.Handle.name=Модуль «Рукоятка»
+item.nhwrench.itemComp.Piston.name=Модуль «Поршень»
+item.nhwrench.itemComp.Claw.name=Модуль «Клешня»
+item.nhwrench.itemLumar.name=Люмар
+item.nhwrench.itemShaderPack.name=Пакет шейдеров
+item.nhwrench.itemMemCard.name=Базовая карта памяти
+item.nhwrench.itemMemCardADV.name=Продвинутая карта памяти
+
+//---Shaders---//
+item.nhwrench.itemShader.White.name=Базовый белый
+item.nhwrench.itemShader.Black.name=Базовый чёрный
+item.nhwrench.itemShader.Dalek.name=УНИЧТОЖИТЬ!
+item.nhwrench.itemShader.Cofh.name=Старая школа Cofh'а
+item.nhwrench.itemShader.Nyan.name=Поп Тарт ключ
+item.nhwrench.itemShader.Danish.name=Даннеброг
+item.nhwrench.itemShader.Botany.name=Живой ключ?
+item.nhwrench.itemShader.Taint.name=Я чувствую ауру
+item.nhwrench.itemShader.Aeonic.name=Эоническая поддержка
+item.nhwrench.itemShader.Prototype.name=Прототип G3
+item.nhwrench.itemShader.Millenium.name=Миллениум 12
+item.nhwrench.itemShader.Gold.name=Чистое золото
+item.nhwrench.itemShader.VibrantRed.name=Резонирующий красный
+item.nhwrench.itemShader.VibrantGreen.name=Резонирующий зелёный
+item.nhwrench.itemShader.VibrantBlue.name=Резонирующий синий
+item.nhwrench.itemShader.Bound.name=Кровавая граница
+item.nhwrench.itemShader.NHAVE.name=NHAVE's G3
+
+//---Tooltip---//
+tooltip.nh.color=Цвет
+tooltip.wrmode.mode=Режим
+tooltip.wrmode.wrench=Отвинчивание
+tooltip.wrmode.rotate=Вращение
+tooltip.wrmode.tune=Настройка
+tooltip.wrmode.none=Нет
+tooltip.wrmode.util=Утилиты
+tooltip.wrmode.press=Нажмите
+tooltip.wrmode.change=, чтобы изменить режим
+tooltip.item.shader=Предметный шейдер
+tooltip.item.omnitool=Мультиинструмент
+tooltip.item.craft=Компонент крафта
+tooltip.item.memcard=Карта памяти
+tooltip.shader.rarity.basic=Обычный
+tooltip.shader.rarity.rare=Редкий
+tooltip.shader.rarity.legendary=Легендарный
+tooltip.shader.rarity.exotic=Экзотический
+tooltip.shader.current=Текущий шейдер
+tooltip.shader.none=Нет шейдера
+tooltip.shader.appliesto=Может быть применён к
+tooltip.shader.artist=Художник
+tooltip.shader.Gold=Вы должны быть богатым или коллектором, чтобы создать этот шейдер.
+tooltip.readonly=Только для чтения
+tooltip.readwrite=Чтение/Запись
+tooltip.owner=Владелец
+tooltip.memcard.info1=ПКМ по блоку, чтобы сохранить данные
+tooltip.memcard.info2=SHIFT+ПКМ по блоку, чтобы загрузить данные
+tooltip.memcard.info3=SHIFT+ПКМ по воздуху, чтобы удалить сохраненные данные
+tooltip.memcardadv.info=Только владелец может разблокировать это
+tooltip.power.charge=Заряд
+tooltip.power.use=RF за использование
+
+//---Config---//
+nh.cfg.title.main=NHWrench: Меню конфигураций
+nh.cfg.title.client=NHWrench: Конфигурации клиента
+nh.cfg.title.common=NHWrench: Общие конфигурации
+nh.cfg.title.modules=NHWrench: Модули интеграции
+nh.cfg.entry.client=Конфигурация клиента
+nh.cfg.entry.client.tooltip=Все параметры клиента
+nh.cfg.entry.common=Общая конфигурация
+nh.cfg.entry.common.tooltip=Все общие параметры
+nh.cfg.entry.modules=Модули интеграции
+nh.cfg.entry.modules.tooltip=Вкл/выкл модули интеграции
